@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjvc674ao5so4"]
+
+[ext_resource type="Script" path="res://scripts/Main.cs" id="1_0il3x"]
+[ext_resource type="PackedScene" uid="uid://cpeb1q7s8hxcq" path="res://escenas/enemy_quid.tscn" id="2_kshr0"]
+[ext_resource type="PackedScene" uid="uid://ng570p2a6sob" path="res://escenas/player.tscn" id="3_pwxua"]
+
+[sub_resource type="Curve2D" id="Curve2D_pmkpt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 3, 720, 0, 0, 0, 0, 2, 3, 0, 0, 0, 0, 3, 1)
+}
+point_count = 6
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0il3x")
+MobScene = ExtResource("2_kshr0")
+
+[node name="Player" parent="." instance=ExtResource("3_pwxua")]
+position = Vector2(237, 316)
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(237, 316)
+gizmo_extents = 0.0
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_pmkpt")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="Path2D"]
+position = Vector2(237, 316)
+rotation = -0.00209643

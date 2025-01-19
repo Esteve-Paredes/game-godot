@@ -3,8 +3,16 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	[Signal] public delegate void GameOverEventHandler();
+	
 	public const float Speed = 300.0f;
 	[Export] private AnimatedSprite2D _animatedSprite;
+	
+	public void Start(Vector2 position)
+	{
+		Position = position;
+		_animatedSprite.Play("idle");
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
